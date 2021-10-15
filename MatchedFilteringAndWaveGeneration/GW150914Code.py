@@ -25,11 +25,11 @@ for i in ['H1', 'L1']:
     pylab.plot(smooth.sample_times, smooth, label = i)
 pylab.legend()
 pylab.xlim(1126259462.21, 1126259462.45)
-pylab.savefig("StrainGW150914.png")
 pylab.ylim(-150, 150)
 pylab.ylabel('Smoothed-Whitened Strain')
 pylab.grid()
 pylab.xlabel('GPS Time (s)')
+pylab.savefig("StrainGW150914.png")
 pylab.show()
 
 hp, hc = get_fd_waveform(approximant="IMRPhenomD", mass1=40, mass2=32,
@@ -41,7 +41,7 @@ snr = matched_filter(hp,h1,psd=psd, low_frequency_cutoff = 20.0)
 snr = snr[len(snr) // 4: len(snr) * 3 // 4]
 
 pylab.plot(snr.sample_times, abs(snr))
-pylab.savefig("SNRGW150914.png")
 pylab.ylabel('Signal-to-Noise')
 pylab.xlabel('GPS Time (s)')
+pylab.savefig("SNRGW150914.png")
 pylab.show()
