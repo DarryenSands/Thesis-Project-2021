@@ -5,6 +5,7 @@ import numpy as np
 import os
 import cv2
 import pickle 
+
 '''
 # Get the Image Resolutions
 root = "/home/darryen/Documents/Dataset/"
@@ -25,7 +26,7 @@ print(img_meta_df.head())
 classNames = ["Signal", "Noise"] # These are the names of the folders 
 directory = "/home/darryen/Documents/thesis-project-2021/Dataset/"
 trainingData = []
-imgSize = 50
+imgSize = 400
 
 def CreateTrainingData():
     for category in classNames:

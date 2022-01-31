@@ -8,16 +8,30 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def FakeNoise(f_lower, f_length, delta_f, delta_t, tsamples, i):
+    '''
+    Creates the signal within noise.
+    Input: Low Cut-off frequency, the length of the frequency, the step-size of the frequency, the step-size of the time,
+    the number of sample data points, the number of the data, the masses of the objects, 
+    the distance of the merge, the spins of the objects
+
+    Output: A graph of the Q-transform (noise)
+    '''
+
     ps = psd.aLIGOaLIGO140MpcT1800545(f_length, delta_f, f_lower)
-    ts = 10 * noise.noise_from_psd(tsamples, delta_t, ps)
+    ts = noise.noise_from_psd(tsamples, delta_t, ps)
 
     times, freqs, power = ts.whiten(4,4).qtransform(0.001, logfsteps=100, qrange=(8,8), frange=(20, 512),)
-    power = power **(1.0/2.0)
+    power = power ** (1.0/2.0)
 
+    #
     plt.pcolormesh(times, freqs, power, shading = "auto")
     plt.yscale('log')
     plt.axis('off')
     plt.savefig(f'/home/darryen/Documents/thesis-project-2021/Dataset/Noise/noisedata{i}.png', bbox_inches='tight')
+    plt.cla()
+    plt.clf()
+    plt.close('all')
+    plt.close()
 
 def Signal(f_lower, f_length, delta_f, delta_t, tsamples, i, m1, m2, dist, spin1, spin2):
     '''
@@ -26,11 +40,11 @@ def Signal(f_lower, f_length, delta_f, delta_t, tsamples, i, m1, m2, dist, spin1
     the number of sample data points, the number of the data, the masses of the objects, 
     the distance of the merge, the spins of the objects
 
-    Output: A graph of the Q-transform
+    Output: A graph of the Q-transform (signal)
     '''
 
     ps = psd.aLIGOaLIGO140MpcT1800545(f_length, delta_f, f_lower)
-    ts = 10 * noise.noise_from_psd(tsamples, delta_t, ps)
+    ts = noise.noise_from_psd(tsamples, delta_t, ps)
 
     hp,hc = get_td_waveform(approximant = "SEOBNRv4", 
     mass1 = m1, mass2 = m2, spin1z = spin1, spin2z = spin2, delta_t = delta_t, f_lower = f_lower, distance = dist)
@@ -50,3 +64,7 @@ def Signal(f_lower, f_length, delta_f, delta_t, tsamples, i, m1, m2, dist, spin1
     plt.axis('off')
     plt.xlim(t - 0.5, t + 0.5)
     plt.savefig(f'/home/darryen/Documents/thesis-project-2021/Dataset/Signal/signaldata{i}.png', bbox_inches='tight')
+    plt.cla()
+    plt.clf()
+    plt.close('all')
+    plt.close()
