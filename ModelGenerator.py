@@ -45,34 +45,34 @@ opt = SGD(lr=0.001)
 model = Sequential()
 
 # 3 Convolutional layers 
-model.add(Conv2D(128, (2, 2), input_shape = X_train.shape[1:]))
+model.add(Conv2D(64, (2, 2), input_shape = X_train.shape[1:]))
 model.add(Activation('sigmoid'))
 model.add(MaxPooling2D(pool_size= (2,2)))
 
-model.add(Conv2D(256, (2, 2)))
+model.add(Conv2D(128, (2, 2)))
 model.add(Activation("sigmoid"))
 model.add(MaxPooling2D(pool_size=(2,2)))
 
-model.add(Conv2D(256, (2, 2)))
+model.add(Conv2D(128, (2, 2)))
 model.add(Activation("sigmoid"))
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dropout(0.25))
 
-model.add(Conv2D(256, (2,2)))
+model.add(Conv2D(128, (2,2)))
 model.add(Activation('sigmoid'))
 model.add(MaxPooling2D(pool_size=(2,2)))
 #model.add(Dropout(0.25))
 
-model.add(Conv2D(256, (2,2)))
+model.add(Conv2D(128, (2,2)))
 model.add(Activation('sigmoid'))
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Dropout(0.25))
 
 model.add(Flatten())
-model.add(Dense(502))
+model.add(Dense(256))
 model.add(Activation("relu"))
 
-model.add(Dense(502))
+model.add(Dense(256))
 model.add(Activation("relu"))
 
 model.add(Dense(1))

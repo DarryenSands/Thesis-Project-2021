@@ -70,3 +70,6 @@ pickle_out.close()
 
 pickle_in = open("X.pickle", "rb")
 X = pickle.load(pickle_in)
+
+print(X.shape)
+print(y.shape)
