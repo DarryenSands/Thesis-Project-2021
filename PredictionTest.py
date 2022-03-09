@@ -10,7 +10,7 @@ def prepare(src):
     moddedImage = cv2.imread(src, cv2.IMREAD_UNCHANGED)
     moddedImage = cv2.resize(moddedImage,(imgSize,imgSize))
     print(moddedImage.shape)
-    #moddedImage = np.reshape(moddedImage,[1,imgSize,imgSize,3])
+    moddedImage = np.reshape(moddedImage,[1,imgSize,imgSize,4])
     return moddedImage
 
 model = tf.keras.models.load_model("CNN.model")
